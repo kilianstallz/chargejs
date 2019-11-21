@@ -26,7 +26,7 @@ export class UDPService extends EventEmitter {
    */
 
   start() {
-    this.service = dgram.createSocket("udp4")
+    this.service = dgram.createSocket('udp4')
     this.service.on('listening', () => {
       globalLogger.info('UDP Socket listening on port ', this.port)
     })
@@ -44,7 +44,7 @@ export class UDPService extends EventEmitter {
     this.service.bind(this.port)
   }
 
-    /**
+  /**
    * Send a UDP Message and await the response.
    * The response object contains the `msg` as `string` and the `rinfo` sender information.
    * @returns {void} Object containing `msg` & `rinfo` properties.

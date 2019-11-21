@@ -42,12 +42,12 @@ export function initializeConfigServerMQTT(context: Application) {
   //   return
   // }
   context.mqtt.subscribe('config', (err, granted) => {
-    if(err) {
+    if (err) {
       context.logger.error(err)
     }
   })
   context.mqtt.subscribe('config/chargers', (err, granted) => {
-    if(err) {
+    if (err) {
       context.logger.error(err)
     }
   })

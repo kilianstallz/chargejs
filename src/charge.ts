@@ -12,7 +12,7 @@ import MQTT, { MqttClient } from 'mqtt'
 import dns from 'dns'
 import { globalLogger } from './services/logger'
 import { IApplicationConfig, IUDPConfig } from './config'
-import {Poller} from './polling'
+import { Poller } from './polling'
 import { initializeConfigServerHTTP, initializeConfigServerMQTT } from './server'
 import { mqttTopicHandler, MQTTService } from './drivers/mqtt/mqtt'
 import { UDPService } from './drivers/udp/udp'
@@ -82,7 +82,6 @@ export class Application extends Emitter {
 
     // Set the Init Done Flag
     this.emit('setup', true)
-
   }
 
   /**
@@ -91,7 +90,7 @@ export class Application extends Emitter {
    * @returns {void}
    * @api public
    */
-  init () {
+  init() {
     eventBus.emit('startDrivers')
   }
 
@@ -124,7 +123,7 @@ export class Application extends Emitter {
       this.udp.on('message', (msg, rinfo) => {
         this.logger.info(`Message: ${rinfo.address}:${rinfo.port} - ${msg.toString()}`)
         // TODO: Message Handler
-        this.emit('udpMessage', {msg: msg.toString(), rinfo})
+        this.emit('udpMessage', { msg: msg.toString(), rinfo })
       })
       this.udp.on('error', error => {
         this.logger.error(error)
@@ -162,8 +161,8 @@ export class Application extends Emitter {
           if (msg.toString() === 'connected') {
             this.logger.info('MQTT Client connected')
           }
-            this.logger.info(`${topic}: ${msg.toString()}`)
-            mqttTopicHandler(this, topic, msg.toString())
+          this.logger.info(`${topic}: ${msg.toString()}`)
+          mqttTopicHandler(this, topic, msg.toString())
         })
       })
     }
@@ -196,8 +195,4 @@ export function checkConnection(cb) {
   })
 }
 
-export {
-  Poller,
-  MQTTService,
-  UDPService,
-}
+export { Poller, MQTTService, UDPService }

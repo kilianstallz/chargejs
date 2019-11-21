@@ -1,21 +1,15 @@
-import {createLogger, transports, format, config} from 'winston'
+import { createLogger, transports, format, config } from 'winston'
 
 let alignColorsAndLogs = format.combine(
   format.colorize({
-    all: true
+    all: true,
   }),
   format.label({
-    label: '[LOGGER]'
+    label: '[LOGGER]',
   }),
-  format.printf(
-    info => `${info.label} ${info.level} : ${info.message}`
-  )
+  format.printf(info => `${info.label} ${info.level} : ${info.message}`),
 )
 
 export const globalLogger = createLogger({
-  transports: [
-    new transports.Console({format: alignColorsAndLogs, handleExceptions: true }
-      )
-  ]
+  transports: [new transports.Console({ format: alignColorsAndLogs, handleExceptions: true })],
 })
-

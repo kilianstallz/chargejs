@@ -1,8 +1,8 @@
-import { Application } from '../../charge';
-import { mqttConfigHandler } from './mqttConfigHandler';
+import { Application } from '../../charge'
+import { mqttConfigHandler } from './mqttConfigHandler'
 import MQTT from 'mqtt'
-import { eventBus } from '../../services/eventBus';
-import { globalLogger } from '../../services/logger';
+import { eventBus } from '../../services/eventBus'
+import { globalLogger } from '../../services/logger'
 
 /**
  * Handle MQTT Messages Recieved
@@ -10,8 +10,8 @@ import { globalLogger } from '../../services/logger';
  * @param topic
  * @param message
  */
-export function mqttTopicHandler(context: Application, topic: string, message:string) {
-  if(topic.startsWith('config')) {
+export function mqttTopicHandler(context: Application, topic: string, message: string) {
+  if (topic.startsWith('config')) {
     return mqttConfigHandler(topic, message)
   }
 }
@@ -37,7 +37,7 @@ export class MQTTService {
         if (msg.toString() === 'connected') {
           globalLogger.info('MQTT Client connected')
         }
-          globalLogger.info(`${topic}: ${msg.toString()}`)
+        globalLogger.info(`${topic}: ${msg.toString()}`)
       })
     })
   }

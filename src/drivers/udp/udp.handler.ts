@@ -2,10 +2,10 @@
  * UDP Message Handler
  */
 
- /**
-  * Import module dependencies
-  */
-import {RemoteInfo} from 'dgram'
+/**
+ * Import module dependencies
+ */
+import { RemoteInfo } from 'dgram'
 import { eventBus } from '../../services/eventBus'
 import { globalLogger } from '../../services/logger'
 import { UDPService } from './udp'
@@ -16,13 +16,13 @@ import { UDPService } from './udp'
  * @param rinfo Remote Info object
  */
 const udpMessageHandler = (context: UDPService, msg: string, rinfo: RemoteInfo) => {
-  if(msg.startsWith('{')) {
-     const _parsedMsg = JSON.parse(msg)
-     context.emit('udpMessage', {msg: _parsedMsg, rinfo})
+  if (msg.startsWith('{')) {
+    const _parsedMsg = JSON.parse(msg)
+    context.emit('udpMessage', { msg: _parsedMsg, rinfo })
   } else if (msg == 'TCH-OK :done') {
     return
   } else {
-    context.emit('udpError', {msg, rinfo})
+    context.emit('udpError', { msg, rinfo })
     globalLogger.info(msg, rinfo)
   }
 }
@@ -30,6 +30,4 @@ const udpMessageHandler = (context: UDPService, msg: string, rinfo: RemoteInfo) 
 /**
  * Export modules
  */
-export {
-  udpMessageHandler
-}
+export { udpMessageHandler }
