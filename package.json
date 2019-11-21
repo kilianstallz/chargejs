@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": false,
   "description": "Utility libary for creating E-Mobile charging systems.",
+  "repository": "https://github.com/kilianstallz/chargejs",
   "main": "./lib/charge.js",
   "types": "./lib/charge.d.ts",
   "files": [
