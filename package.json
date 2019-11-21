@@ -24,7 +24,7 @@
     "postversion": "git push && git push --tags",
     "npmlogin": "npm login --registry=https://npm.pkg.github.com/"
   },
-  "author": "Kilian Stallinger",
+  "author": "kilianstallz",
   "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.2.4",
