@@ -1,0 +1,82 @@
+{
+  "name": "chargejs",
+  "version": "0.0.1",
+  "private": false,
+  "description": "Utility libary for creating E-Mobile charging systems.",
+  "main": "./lib/charge.js",
+  "types": "./lib/charge.d.ts",
+  "files": [
+    "./lib/**/*"
+  ],
+  "scripts": {
+    "test": "mocha --exit -r ts-node/register --colors **/*.spec.ts",
+    "test:report": "npm run test && http-server ./coverage/lcov-report/",
+    "coverage": "nyc npm run test",
+    "start": "node --inspect=5858 -r ts-node/register ./src/charge.ts",
+    "dev": "nodemon",
+    "build": "tsc -p .",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\" ",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run coverage",
+    "prepublishOnly_do": "npm run coverage && npm run lint",
+    "preversion_do": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags",
+    "npmlogin": "npm login --registry=https://npm.pkg.github.com/"
+  },
+  "author": "Kilian Stallinger",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.2.4",
+    "@types/express": "^4.17.2",
+    "@types/ioredis": "^4.0.18",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.5",
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
+    "chai": "^4.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "mocha": "^6.2.2",
+    "nodemon": "^1.19.4",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4",
+    "typings": "^2.1.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "ioredis": "^4.14.1",
+    "jsmodbus": "^4.0.0",
+    "merge-descriptors": "^1.0.1",
+    "mqtt": "^3.0.0",
+    "serialport": "^8.0.5",
+    "winston": "^3.2.1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm link && npm start",
+    "ext": "ts"
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
+    ]
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
+}

@@ -1,0 +1,16 @@
+const devicesMap = {
+	// All UDP Devices listed here
+	udp: {
+		// Give a custom unique name to a device
+		uName: {
+			// Select the type of device - CHARGER, PRODUCER
+			type: "CHARGER",
+			// UID of the device gethered by the health check, then stored in db
+			uid: undefined,
+			// IP of the device - preconfigured
+			ipAddress: undefined
+		}
+	},
+	ocpp: {},
+	modbustcp: {}
+};
