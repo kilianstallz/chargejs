@@ -1,5 +1,5 @@
 {
-  "name": "chargejs",
+  "name": "@kilianstallz/chargejs",
   "version": "0.0.1",
   "private": false,
   "description": "Utility libary for creating E-Mobile charging systems.",
